@@ -1,0 +1,8 @@
+
+POST http://0.0.0.0:8000/crawl/coupang
+Content-Type: application/json
+
+{
+    "item_url": "https://www.coupang.com/vp/products/7240641222?itemId=18396318541&vendorItemId=85539252284&sourceType=cmgoms&omsPageId=s13965&omsPageUrl=s13965&isAddedCart=",
+    "page_count": 100
+}
