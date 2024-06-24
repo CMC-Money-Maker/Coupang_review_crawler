@@ -2,8 +2,6 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from bs4 import BeautifulSoup as bs
 from typing import Optional,Union,Dict,List
-import time
-import os
 import re
 import requests as rq
 import json
@@ -25,7 +23,7 @@ def get_headers(
             return default_value
         raise EnvironmentError(f'Set the {key}')
 
-class Coupang:
+class Coupang_Crawler:
     @staticmethod
     def get_product_code(url: str)-> str:
         """ 입력받은 URL 주소의 PRODUCT CODE 추출하는 메소드 """
