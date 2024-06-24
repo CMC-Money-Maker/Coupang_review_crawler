@@ -2,3 +2,4 @@
 .python-version
 /src/.env
 /template.yml
+/.aws-sam/

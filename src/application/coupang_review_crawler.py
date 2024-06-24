@@ -1,3 +1,4 @@
+import os
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from bs4 import BeautifulSoup as bs
@@ -11,7 +12,10 @@ def get_headers(
         default_value: Optional[str] = None
 )-> Dict[str,Dict[str,str]]:
     """ Get Headers """
-    JSON_FILE : str = '../json/headers.json'
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    base_dir = os.path.abspath(os.path.join(current_dir, '../../'))
+    json_file_path = os.path.join(base_dir, 'json', 'headers.json')
+    JSON_FILE : str = json_file_path
 
     with open(JSON_FILE,'r',encoding='UTF-8') as file:
         headers : Dict[str,Dict[str,str]] = json.loads(file.read())
@@ -49,7 +53,7 @@ class Coupang_Crawler:
         crawl_data : List[List[Dict[str,Union[str,int]]]] = list()
 
         with rq.Session() as session:
-            with ThreadPoolExecutor(max_workers=20) as executor:
+            with ThreadPoolExecutor(max_workers=10) as executor:
                 future_to_url = {executor.submit(self.fetch, url, session): url for url in URLS}
                 for future in as_completed(future_to_url):
                     try:
